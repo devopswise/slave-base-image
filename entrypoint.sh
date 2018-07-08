@@ -22,14 +22,6 @@ write_key() {
 if [[ $JENKINS_SLAVE_SSH_PUBKEY == ssh-* ]]; then
   write_key "${JENKINS_SLAVE_SSH_PUBKEY}"
 fi
-if [[ $# -gt 0 ]]; then
-  if [[ $1 == ssh-* ]]; then
-    write_key "$1"
-    shift 1
-  else
-    exec "$@"
-  fi
-fi
 
 if ! grep -Fq "${USER_ID}" /etc/passwd; then
     # current user is an arbitrary 
