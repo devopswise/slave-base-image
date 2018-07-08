@@ -45,7 +45,7 @@ RUN apt-get update -qq && apt-get install -y -qq --no-install-recommends \
     libssl-dev apt-transport-https ca-certificates curl gnupg2 \
     && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
     && echo "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" > /etc/apt/sources.list.d/docker-ce.list \
-    && apt-get update && apt-get -y dist-upgrade && apt-get install -y docker-ce \
+    && apt-get update && apt-get install -y docker-ce \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
