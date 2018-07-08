@@ -41,13 +41,18 @@ RUN echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/s
 
 #    wget vim python-pip s3cmd \
 
-RUN apt-get update -qq && apt-get install -y -qq --no-install-recommends \
-    libssl-dev apt-transport-https ca-certificates curl gnupg2 \
-    && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
-    && echo "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" > /etc/apt/sources.list.d/docker-ce.list \
-    && apt-get update && apt-get install -y docker-ce \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ENV DOCKER_VERSION=1.6.0 \
+    DOCKER_BUCKET=get.docker.com
+RUN curl -sSL "https://${DOCKER_BUCKET}/builds/Linux/x86_64/docker-${DOCKER_VERSION}" -o /usr/bin/docker && \
+    chmod +x /usr/bin/docker
+
+#RUN apt-get update -qq && apt-get install -y -qq --no-install-recommends \
+#    libssl-dev apt-transport-https ca-certificates curl gnupg2 \
+#    && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
+#    && echo "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" > /etc/apt/sources.list.d/docker-ce.list \
+#    && apt-get update && apt-get install -y docker-ce \
+#    && apt-get clean \
+#    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV LANG C.UTF-8
 USER user
