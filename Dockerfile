@@ -41,10 +41,11 @@ RUN echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/s
 
 #    wget vim python-pip s3cmd \
 
-ENV DOCKER_VERSION=1.6.0 \
-    DOCKER_BUCKET=get.docker.com
-RUN curl -sSL "https://${DOCKER_BUCKET}/builds/Linux/x86_64/docker-${DOCKER_VERSION}" -o /usr/bin/docker && \
-    chmod +x /usr/bin/docker
+ENV DOCKER_VERSION=18.03.1-ce \
+    DOCKER_BUCKET=download.docker.com
+RUN wget -qO- https://${DOCKER_BUCKET}/linux/static/stable/x86_64/docker-${18.03.1-ce}.tgz | tar xvz docker/docker --strip-components=1 && mv ./docker /usr/bin/docker
+#RUN curl -sSL "https://${DOCKER_BUCKET}/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" -o /usr/bin/docker && \
+#    chmod +x /usr/bin/docker
 
 #RUN apt-get update -qq && apt-get install -y -qq --no-install-recommends \
 #    libssl-dev apt-transport-https ca-certificates curl gnupg2 \
