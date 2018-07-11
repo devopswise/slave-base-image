@@ -43,7 +43,7 @@ RUN echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/s
 
 ENV DOCKER_VERSION=18.03.1-ce \
     DOCKER_BUCKET=download.docker.com
-RUN wget -qO- https://${DOCKER_BUCKET}/linux/static/stable/x86_64/docker-${18.03.1-ce}.tgz | tar xvz docker/docker --strip-components=1 && mv ./docker /usr/bin/docker
+RUN wget -qO- https://${DOCKER_BUCKET}/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz | tar xvz docker/docker --strip-components=1 && mv ./docker /usr/bin/docker
 #RUN curl -sSL "https://${DOCKER_BUCKET}/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" -o /usr/bin/docker && \
 #    chmod +x /usr/bin/docker
 
